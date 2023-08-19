@@ -1,0 +1,27 @@
+body {
+  font-family: "specimen", serif;
+}
+
+.container.light-mode {
+  --Text: hsl(200, 15%, 8%);
+  --Light-Mode-Input: hsl(0, 0%, 52%);
+  --Light-Mode-Background: hsl(0, 0%, 98%);
+  --Light-Mode-Elements: hsl(0, 0%, 100%);
+
+  background-color: var(--Light-Mode-Background);
+}
+
+.container.dark-mode {
+  --Dark-Mode-Elements: hsl(209, 23%, 22%);
+  --Dark-Mode-Background: hsl(207, 26%, 17%);
+  --Text: hsl(0, 0%, 100%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 5%;
+  justify-content: space-between;
+  background-color: #fff;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+}
