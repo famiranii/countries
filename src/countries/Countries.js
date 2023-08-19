@@ -1,7 +1,7 @@
-import '../App.css'
+import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from './Header';
+import Header from "./Header";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
@@ -19,11 +19,26 @@ export default function Countries() {
   }, []);
 
   return (
-    <div className='container light-mode'>
-      <Header/>
-      {allCountries.map((country, index) => (
-        <h1 key={index}>{country.name.common}</h1>
-      ))}
+    <div className="container light-mode">
+      <Header />
+      <div className="filter-countery">
+        <input className="input-countery" placeholder="Searching for countery..." />
+        <select className="continet-selector">
+          <option>Filter by Region</option>
+          <option>Africa</option>
+          <option>Amrica</option>
+          <option>Asia</option>
+          <option>Urope</option>
+          <option>Oceania</option>
+        </select>
+      </div>
+      <div className="all-countries">
+        {allCountries.map((country, index) => (
+          <div key={index} className="country">
+            <h1>{country.name.common}</h1>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
