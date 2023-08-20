@@ -2,6 +2,7 @@ import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Header from "./Header";
+import Country from "./Country";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
@@ -34,9 +35,7 @@ export default function Countries() {
       </div>
       <div className="all-countries">
         {allCountries.map((country, index) => (
-          <div key={index} className="country">
-            <h1>{country.name.common}</h1>
-          </div>
+          <Country key={index} country={country}/>
         ))}
       </div>
     </div>
