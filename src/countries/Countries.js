@@ -4,10 +4,21 @@ import axios from "axios";
 import Header from "./Header";
 import Country from "./Country";
 import { IoMdSearch } from "react-icons/io";
+import { BsChevronDown } from "react-icons/bs";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
   const [searchedCountry, setSearchedCountries] = useState([]);
+  const [showDropdown, setDropdown] = useState(false);
+  const [filteredRegion] = useState([
+    "Filter by Region",
+    "Africa",
+    "America",
+    "Asia",
+    "Europe",
+    "Oceania",
+  ]);
+  const [currentRegion,setRegion] = useState("Filter by Region");
 
   useEffect(() => {
     axios
@@ -23,9 +34,21 @@ export default function Countries() {
 
   const searchCountry = (event) => {
     const searchedCountry = allCountries.filter((country) =>
-      country.name.common.replace(/\s/g, '').toLowerCase().includes(event.target.value.replace(/\s/g, ''))
+      country.name.common
+        .replace(/\s/g, "")
+        .toLowerCase()
+        .includes(event.target.value.replace(/\s/g, ""))
     );
     setSearchedCountries(searchedCountry);
+  };
+  const setDropdownStatus = () => {
+    setDropdown(!showDropdown);
+  };
+
+  const filterByRegion = (event) => {
+    const currentRegion = event.target.innerText
+    console.log(currentRegion);
+    setRegion(currentRegion)
   };
 
   return (
@@ -40,14 +63,25 @@ export default function Countries() {
             onChange={searchCountry}
           />
         </div>
-        <select className="continet-selector">
-          <option>Filter by Region</option>
-          <option>Africa</option>
-          <option>Amrica</option>
-          <option>Asia</option>
-          <option>Urope</option>
-          <option>Oceania</option>
-        </select>
+        <div>
+          <button onClick={setDropdownStatus} className="continet-selector">
+            {currentRegion}
+            <BsChevronDown></BsChevronDown>
+          </button>
+          {showDropdown && (
+            <div className="continent-options">
+              {filteredRegion.map((region, index) => (
+                <p
+                  className="continent-option"
+                  onClick={filterByRegion}
+                  key={index}
+                >
+                  {region}
+                </p>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
       <div className="all-countries">
         {searchedCountry.map((country, index) => (
