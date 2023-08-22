@@ -1,15 +1,29 @@
-import React from 'react'
-import '../App.css'
+import React from "react";
+import "../App.css";
+import { Link } from "react-router-dom";
 
 export default function Country(props) {
-    console.log(props.country);
-    const data = props.country
-
+  const data = props.country;
+  console.log(data);
 
   return (
-    <div className='country'>
-        <img className='flag' src={data.flags.svg} alt='falg'/>
-      {data.name.common}
-    </div>
-  )
+    <Link to={`Details/${data.name.common}`} className="country">
+      <img className="flag" src={data.flags.svg} alt="falg" />
+      <div className="country-info">
+        <h3 className="country-name"> {data.name.common}</h3>
+        <div className="about-country">
+          <strong>Population : </strong>
+          <span className="value">{data.population.toLocaleString()}</span>
+        </div>
+        <div className="about-country">
+          <strong>Region : </strong>
+          <span className="value">{data.region}</span>
+        </div>
+        <div  className="about-country">
+          <strong>Capital : </strong>
+          <span className="value">{data.capital}</span>
+        </div>
+      </div>
+    </Link>
+  );
 }

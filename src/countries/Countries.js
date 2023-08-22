@@ -11,7 +11,6 @@ export default function Countries() {
     axios
       .get("https://restcountries.com/v3.1/all")
       .then((response) => {
-        console.log(response.data[1].name.common);
         setAllCountries(response.data);
       })
       .catch((error) => {
