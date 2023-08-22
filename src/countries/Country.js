@@ -4,8 +4,6 @@ import { Link } from "react-router-dom";
 
 export default function Country(props) {
   const data = props.country;
-  console.log(data);
-
   return (
     <Link to={`Details/${data.name.common}`} className="country">
       <img className="flag" src={data.flags.svg} alt="falg" />

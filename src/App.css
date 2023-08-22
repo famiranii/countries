@@ -1,5 +1,5 @@
 body {
-  font-family: 'Nunito Sans', sans-serif;
+  font-family: "Nunito Sans", sans-serif;
   font-size: 14px;
 }
 
@@ -48,22 +48,36 @@ body {
   color: black;
 }
 
-.country-info{
+.country-info {
   padding: 1rem;
 }
 
-.filter-countery {
+.filter-country {
   display: flex;
   padding: 3rem 5%;
   justify-content: space-between;
 }
 
-.input-countery {
+.input-div-country{
+  position: relative;
+}
+
+.bi-search{
+  width: 1.5rem;
+  height: 1.5rem;
+  position: absolute;
+  left: 2rem;
+  top: 0.8rem;
+  color: var(--Input);
+}
+
+.input-country {
   width: 30rem;
   border-style: none;
   height: 3rem;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 0.3rem;
+  padding-left: 4rem;
 }
 
 input:focus {
@@ -86,57 +100,58 @@ input:focus {
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
-.country-name{
+.country-name {
   font-weight: bolder;
 }
 
-.about-country{
+.about-country {
   margin-bottom: 0.3rem;
 }
 
-.value{
+.value {
   color: gray;
 }
 
-.details-page{
+.details-page {
   padding: 5rem 4rem;
 }
 
-.details{
+.details {
   padding-top: 3rem;
   display: flex;
 }
 
-.flag-div{
+.flag-div {
   width: 50%;
   padding-right: 4rem;
 }
 
-.flag-img{
+.flag-img {
   max-width: 100%;
   object-fit: cover;
   height: 20rem;
+  box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
-.country-infos{
+.country-infos {
   width: 50%;
-  padding:2rem 4rem;
+  padding: 2rem 4rem;
 }
 
-.country-inner-infos{
+.country-inner-infos {
   display: flex;
   justify-content: space-between;
 }
 
-.country-detail{
+.country-detail {
   padding: 0.2rem 0rem;
 }
 
-.half-info{
+.half-info {
   width: 50%;
 }
 
-.details-back-btn{
+.details-back-btn {
   width: 7rem;
   height: 2.2rem;
   background-color: #fff;
