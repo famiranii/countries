@@ -28,7 +28,7 @@ export default function Details() {
   }, [params.name]);
 
   return (
-    <div>
+    <div className="details-width">
       <Header />
       {countryInfo.length === 1 ? (
         <div className="details-page">
@@ -100,7 +100,9 @@ export default function Details() {
                 </div>
               </div>
               <div className="borders-btn">
-                  <span className="borders-title">Border Countries:</span>
+                <div className="borders-title">
+                  <span>Border Countries:</span>
+                </div>
                 <div>
                   {borders.map((border, index) => (
                     <BordersBtn border={border} key={index} />
