@@ -151,13 +151,13 @@ input:focus {
 
 .flag-div {
   width: 50%;
-  padding-right: 4rem;
+  padding-right: 2rem;
 }
 
 .flag-img {
   max-width: 100%;
   object-fit: cover;
-  height: 20rem;
+  height: 22rem;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
@@ -186,4 +186,31 @@ input:focus {
   border-style: none;
   border-radius: 0.3rem;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.3);
+}
+
+
+.borders-title{
+  font-weight: bolder;
+  padding-right: 1rem;
+  width: 13rem;
+
+}
+
+.borders-btn{
+  padding: 2rem 0;
+  display: flex;
+}
+
+.border-btn{
+  background-color:#fff ;
+  border-style: none;
+  min-width: 5rem;
+  padding: 0.2rem 0.1rem;
+  margin-right: 0.5rem;
+  border: solid 2px rgba(213, 213, 213, 0.426);
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-family: "Nunito Sans", sans-serif;
+  color:rgb(69, 69, 69) ;
+  cursor: pointer;
 }

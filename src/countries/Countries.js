@@ -10,7 +10,7 @@ export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
   const [filteredCountry, setFilteredCountries] = useState([]);
   const [searchedCountry, setSearchedCountries] = useState([]);
-  const [isSearchedCountry,setIsSearchedCountry] = useState('');
+  const [isSearchedCountry, setIsSearchedCountry] = useState("");
   const [showDropdown, setDropdown] = useState(false);
   const [filteredRegion] = useState([
     "Filter by Region",
@@ -29,6 +29,13 @@ export default function Countries() {
         setAllCountries(response.data);
         setFilteredCountries(response.data);
         setSearchedCountries(response.data);
+        const borders = response.data.map((country) => ({
+          border: country.cca3,
+          name: country.name.common
+        }));
+        
+        console.log(borders);
+        localStorage.setItem('borders',JSON.stringify(borders))
       })
       .catch((error) => {
         console.log(error);
@@ -36,7 +43,7 @@ export default function Countries() {
   }, []);
 
   const searchCountry = (event) => {
-    setIsSearchedCountry(event.target.value)
+    setIsSearchedCountry(event.target.value);
     const searchedCountry = filteredCountry.filter((country) =>
       country.name.common
         .replace(/\s/g, "")
@@ -62,7 +69,7 @@ export default function Countries() {
       setSearchedCountries(allCountries);
     }
     setRegion(currentRegion);
-    setIsSearchedCountry('')
+    setIsSearchedCountry("");
   };
 
   return (

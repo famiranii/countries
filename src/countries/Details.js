@@ -4,16 +4,23 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import DetailsBackBtn from "./DetailsBackBtn";
+import BordersBtn from "./BordersBtn";
 
 export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
+  const [borders, setBorders] = useState([]);
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/translation/${params.name}`)
       .then((response) => {
-        console.log(response.data[0]);
+        const info = response.data[0];
         setCountryInfo(response.data);
+        const localBorders = JSON.parse(localStorage.getItem("borders"));
+        const borders = localBorders.filter((border) =>
+          info.borders.includes(border.border)
+        );
+        setBorders(borders);
       })
       .catch((error) => {
         console.log(error);
@@ -26,7 +33,7 @@ export default function Details() {
       {countryInfo.length === 1 ? (
         <div className="details-page">
           <div>
-            <Link to='../'>
+            <Link to="../">
               <DetailsBackBtn text="Back" />
             </Link>
           </div>
@@ -92,7 +99,14 @@ export default function Details() {
                   </div>
                 </div>
               </div>
-              <div></div>
+              <div className="borders-btn">
+                  <span className="borders-title">Border Countries:</span>
+                <div>
+                  {borders.map((border, index) => (
+                    <BordersBtn border={border} key={index} />
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </div>
