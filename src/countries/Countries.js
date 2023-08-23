@@ -8,23 +8,26 @@ import { BsChevronDown } from "react-icons/bs";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
+  const [filteredCountry, setFilteredCountries] = useState([]);
   const [searchedCountry, setSearchedCountries] = useState([]);
+  const [isSearchedCountry,setIsSearchedCountry] = useState('');
   const [showDropdown, setDropdown] = useState(false);
   const [filteredRegion] = useState([
     "Filter by Region",
     "Africa",
-    "America",
+    "Americas",
     "Asia",
     "Europe",
     "Oceania",
   ]);
-  const [currentRegion,setRegion] = useState("Filter by Region");
+  const [currentRegion, setRegion] = useState("Filter by Region");
 
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
       .then((response) => {
         setAllCountries(response.data);
+        setFilteredCountries(response.data);
         setSearchedCountries(response.data);
       })
       .catch((error) => {
@@ -33,7 +36,8 @@ export default function Countries() {
   }, []);
 
   const searchCountry = (event) => {
-    const searchedCountry = allCountries.filter((country) =>
+    setIsSearchedCountry(event.target.value)
+    const searchedCountry = filteredCountry.filter((country) =>
       country.name.common
         .replace(/\s/g, "")
         .toLowerCase()
@@ -46,9 +50,19 @@ export default function Countries() {
   };
 
   const filterByRegion = (event) => {
-    const currentRegion = event.target.innerText
-    console.log(currentRegion);
-    setRegion(currentRegion)
+    const currentRegion = event.target.innerText;
+    if (currentRegion !== "Filter by Region") {
+      const filteredCountry = allCountries.filter(
+        (country) => country.region === currentRegion
+      );
+      setFilteredCountries(filteredCountry);
+      setSearchedCountries(filteredCountry);
+    } else {
+      setFilteredCountries(allCountries);
+      setSearchedCountries(allCountries);
+    }
+    setRegion(currentRegion);
+    setIsSearchedCountry('')
   };
 
   return (
@@ -60,6 +74,7 @@ export default function Countries() {
           <input
             className="input-country"
             placeholder="Searching for countery..."
+            value={isSearchedCountry}
             onChange={searchCountry}
           />
         </div>
