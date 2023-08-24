@@ -21,7 +21,8 @@ export default function Countries() {
     "Oceania",
   ]);
   const [currentRegion, setRegion] = useState("Filter by Region");
-
+  const [darkMode, setDarkMode] = useState(false);
+  console.log(localStorage.getItem("darkMode"));
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -31,11 +32,11 @@ export default function Countries() {
         setSearchedCountries(response.data);
         const borders = response.data.map((country) => ({
           border: country.cca3,
-          name: country.name.common
+          name: country.name.common,
         }));
-        
+
         console.log(borders);
-        localStorage.setItem('borders',JSON.stringify(borders))
+        localStorage.setItem("borders", JSON.stringify(borders));
       })
       .catch((error) => {
         console.log(error);
@@ -72,9 +73,12 @@ export default function Countries() {
     setIsSearchedCountry("");
   };
 
+  const changeMode = (mode) => {
+    setDarkMode(mode);
+  };
   return (
-    <div className="container light-mode">
-      <Header />
+    <div className={`${darkMode ? "dark-mode" : "light-mode"}`}>
+      <Header changeTaskMode={changeMode} />
       <div className="filter-country">
         <div className="input-div-country">
           <IoMdSearch className="bi-search"></IoMdSearch>
