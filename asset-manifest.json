@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/git@github.com:famiranii/show-countries/static/css/main.c0f34606.css",
-    "main.js": "/git@github.com:famiranii/show-countries/static/js/main.824b6cd0.js",
-    "static/js/787.95ba94cc.chunk.js": "/git@github.com:famiranii/show-countries/static/js/787.95ba94cc.chunk.js",
-    "index.html": "/git@github.com:famiranii/show-countries/index.html",
-    "main.c0f34606.css.map": "/git@github.com:famiranii/show-countries/static/css/main.c0f34606.css.map",
-    "main.824b6cd0.js.map": "/git@github.com:famiranii/show-countries/static/js/main.824b6cd0.js.map",
-    "787.95ba94cc.chunk.js.map": "/git@github.com:famiranii/show-countries/static/js/787.95ba94cc.chunk.js.map"
+    "main.css": "/git@github.com:famiranii/show-countries.git/static/css/main.c0f34606.css",
+    "main.js": "/git@github.com:famiranii/show-countries.git/static/js/main.34ddff4d.js",
+    "static/js/787.95ba94cc.chunk.js": "/git@github.com:famiranii/show-countries.git/static/js/787.95ba94cc.chunk.js",
+    "index.html": "/git@github.com:famiranii/show-countries.git/index.html",
+    "main.c0f34606.css.map": "/git@github.com:famiranii/show-countries.git/static/css/main.c0f34606.css.map",
+    "main.34ddff4d.js.map": "/git@github.com:famiranii/show-countries.git/static/js/main.34ddff4d.js.map",
+    "787.95ba94cc.chunk.js.map": "/git@github.com:famiranii/show-countries.git/static/js/787.95ba94cc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0f34606.css",
-    "static/js/main.824b6cd0.js"
+    "static/js/main.34ddff4d.js"
   ]
 }
