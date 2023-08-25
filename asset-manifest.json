@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/famiranii/countries/static/css/main.c0f34606.css",
-    "main.js": "/famiranii/countries/static/js/main.008b8da2.js",
-    "static/js/787.862c3719.chunk.js": "/famiranii/countries/static/js/787.862c3719.chunk.js",
-    "index.html": "/famiranii/countries/index.html",
-    "main.c0f34606.css.map": "/famiranii/countries/static/css/main.c0f34606.css.map",
-    "main.008b8da2.js.map": "/famiranii/countries/static/js/main.008b8da2.js.map",
-    "787.862c3719.chunk.js.map": "/famiranii/countries/static/js/787.862c3719.chunk.js.map"
+    "main.css": "/famiranii/show-countries/static/css/main.c0f34606.css",
+    "main.js": "/famiranii/show-countries/static/js/main.33a0a9a0.js",
+    "static/js/787.06b78086.chunk.js": "/famiranii/show-countries/static/js/787.06b78086.chunk.js",
+    "index.html": "/famiranii/show-countries/index.html",
+    "main.c0f34606.css.map": "/famiranii/show-countries/static/css/main.c0f34606.css.map",
+    "main.33a0a9a0.js.map": "/famiranii/show-countries/static/js/main.33a0a9a0.js.map",
+    "787.06b78086.chunk.js.map": "/famiranii/show-countries/static/js/787.06b78086.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0f34606.css",
-    "static/js/main.008b8da2.js"
+    "static/js/main.33a0a9a0.js"
   ]
 }
