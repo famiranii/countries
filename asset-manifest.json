@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/countriesishdfgidug8%2074747/static/css/main.c0f34606.css",
-    "main.js": "/countriesishdfgidug8%2074747/static/js/main.9e7f34a0.js",
-    "static/js/787.95ba94cc.chunk.js": "/countriesishdfgidug8%2074747/static/js/787.95ba94cc.chunk.js",
-    "index.html": "/countriesishdfgidug8%2074747/index.html",
-    "main.c0f34606.css.map": "/countriesishdfgidug8%2074747/static/css/main.c0f34606.css.map",
-    "main.9e7f34a0.js.map": "/countriesishdfgidug8%2074747/static/js/main.9e7f34a0.js.map",
-    "787.95ba94cc.chunk.js.map": "/countriesishdfgidug8%2074747/static/js/787.95ba94cc.chunk.js.map"
+    "main.css": "/famiranii/countries/static/css/main.c0f34606.css",
+    "main.js": "/famiranii/countries/static/js/main.273bce14.js",
+    "static/js/787.95ba94cc.chunk.js": "/famiranii/countries/static/js/787.95ba94cc.chunk.js",
+    "index.html": "/famiranii/countries/index.html",
+    "main.c0f34606.css.map": "/famiranii/countries/static/css/main.c0f34606.css.map",
+    "main.273bce14.js.map": "/famiranii/countries/static/js/main.273bce14.js.map",
+    "787.95ba94cc.chunk.js.map": "/famiranii/countries/static/js/787.95ba94cc.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.c0f34606.css",
-    "static/js/main.9e7f34a0.js"
+    "static/js/main.273bce14.js"
   ]
 }
