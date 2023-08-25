@@ -58,6 +58,7 @@ export default function Countries() {
   };
 
   const filterByRegion = (event) => {
+    setDropdown(!showDropdown);
     const currentRegion = event.target.innerText;
     if (currentRegion !== "Filter by Region") {
       const filteredCountry = allCountries.filter(
