@@ -10,7 +10,7 @@ export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
   const [borders, setBorders] = useState([]);
-  const [darkMode,setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/translation/${params.name}`)
@@ -28,11 +28,11 @@ export default function Details() {
       });
   }, [params.name]);
 
-  const changeMode = (mode)=>{
-    setDarkMode(mode)
-  }
+  const changeMode = (mode) => {
+    setDarkMode(mode);
+  };
   return (
-    <div className={`details-width ${darkMode?"dark-mode":"light-mode"}`}>
+    <div className={`details-width ${darkMode ? "dark-mode" : "light-mode"}`}>
       <Header changeTaskMode={changeMode} />
       {countryInfo.length === 1 ? (
         <div className="details-page">
@@ -117,7 +117,10 @@ export default function Details() {
           </div>
         </div>
       ) : (
-        <h2>wait</h2>
+        <div className="loading">
+          <p>plese wait...</p>
+          <div className="loader"></div>
+        </div>
       )}
     </div>
   );
