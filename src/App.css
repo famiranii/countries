@@ -7,7 +7,7 @@ body {
   --Text: hsl(200, 15%, 8%);
   --Input: hsl(0, 0%, 52%);
   --Background: hsl(0, 0%, 98%);
-  --Elements: hsla(0, 0%, 100%, 0.715);
+  --Elements: hsla(0, 0%, 100%);
   --text-value: hsl(0, 0%, 29%);
 
   background-color: var(--Background);
