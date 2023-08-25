@@ -49,7 +49,7 @@ export default function Countries() {
       country.name.common
         .replace(/\s/g, "")
         .toLowerCase()
-        .includes(event.target.value.replace(/\s/g, ""))
+        .includes(event.target.value.toLowerCase().replace(/\s/g, ""))
     );
     setSearchedCountries(searchedCountry);
   };
