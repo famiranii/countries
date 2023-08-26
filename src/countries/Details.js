@@ -10,7 +10,7 @@ export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
   const [borders, setBorders] = useState([]);
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode')==="true");
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/translation/${params.name}`)
