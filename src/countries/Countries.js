@@ -21,7 +21,7 @@ export default function Countries() {
     "Oceania",
   ]);
   const [currentRegion, setRegion] = useState("Filter by Region");
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode')==="true");
   console.log(localStorage.getItem("darkMode"));
   useEffect(() => {
     axios
@@ -69,7 +69,7 @@ export default function Countries() {
     } else {
       setFilteredCountries(allCountries);
       setSearchedCountries(allCountries);
-    }
+    } 
     setRegion(currentRegion);
     setIsSearchedCountry("");
   };

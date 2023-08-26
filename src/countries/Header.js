@@ -4,11 +4,16 @@ import { HiOutlineMoon } from "react-icons/hi";
 import { FaMoon } from "react-icons/fa";
 
 export default function Header({ changeTaskMode }) {
-  const [darkMode, setMode] = useState(false);
+  const savedDarkMode = localStorage.getItem("darkMode");
+  const [darkMode, setDarkMode] = useState(savedDarkMode === "true");
+
   const changeMode = () => {
-    setMode(!darkMode);
+    const newDarkMode = !darkMode;
+    setDarkMode(newDarkMode);
+    localStorage.setItem("darkMode", newDarkMode.toString());
     changeTaskMode(!darkMode);
   };
+
   return (
     <header className="header">
       <h1 className="title">Where in the world</h1>
