@@ -190,6 +190,7 @@ input:focus {
 
 .details-page {
   padding: 5rem 5%;
+  min-height: 90vh;
 }
 
 .details {
