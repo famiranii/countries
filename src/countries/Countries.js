@@ -1,7 +1,6 @@
 import "../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Header from "./Header";
 import Country from "./Country";
 import { IoMdSearch } from "react-icons/io";
 import { BsChevronDown } from "react-icons/bs";
@@ -21,8 +20,6 @@ export default function Countries() {
     "Oceania",
   ]);
   const [currentRegion, setRegion] = useState("Filter by Region");
-  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode')==="true");
-  console.log(localStorage.getItem("darkMode"));
   useEffect(() => {
     axios
       .get("https://restcountries.com/v3.1/all")
@@ -69,17 +66,13 @@ export default function Countries() {
     } else {
       setFilteredCountries(allCountries);
       setSearchedCountries(allCountries);
-    } 
+    }
     setRegion(currentRegion);
     setIsSearchedCountry("");
   };
 
-  const changeMode = (mode) => {
-    setDarkMode(mode);
-  };
   return (
-    <div className={`${darkMode ? "dark-mode" : "light-mode"}`}>
-      <Header changeTaskMode={changeMode} />
+    <div>
       <div className="filter-country">
         <div className="input-div-country">
           <IoMdSearch className="bi-search"></IoMdSearch>

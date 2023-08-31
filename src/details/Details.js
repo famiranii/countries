@@ -2,7 +2,6 @@ import React from "react";
 import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Header from "./Header";
 import DetailsBackBtn from "./DetailsBackBtn";
 import BordersBtn from "./BordersBtn";
 
@@ -10,7 +9,6 @@ export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
   const [borders, setBorders] = useState([]);
-  const [darkMode, setDarkMode] = useState(localStorage.getItem('darkMode')==="true");
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/translation/${params.name}`)
@@ -28,12 +26,8 @@ export default function Details() {
       });
   }, [params.name]);
 
-  const changeMode = (mode) => {
-    setDarkMode(mode);
-  };
   return (
-    <div className={`details-width ${darkMode ? "dark-mode" : "light-mode"}`}>
-      <Header changeTaskMode={changeMode} />
+    <div>
       {countryInfo.length === 1 ? (
         <div className="details-page">
           <div>

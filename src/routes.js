@@ -1,8 +1,8 @@
-import Details from "./countries/Details";
+import Details from "./details/Details";
 import Countries from "./countries/Countries";
 
 const router =[
-    {path:"/Details/:name" ,element:<Details />},
+    {path:"/details/:name" ,element:<Details />},
     {path:"/" ,element:<Countries />},
 
 ]
