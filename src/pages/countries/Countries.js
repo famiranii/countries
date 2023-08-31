@@ -1,4 +1,4 @@
-import "../App.css";
+import "../../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Country from "./Country";
@@ -11,6 +11,8 @@ export default function Countries() {
   const [searchedCountry, setSearchedCountries] = useState([]);
   const [isSearchedCountry, setIsSearchedCountry] = useState("");
   const [showDropdown, setDropdown] = useState(false);
+
+  //question about continent ?????
   const [filteredRegion] = useState([
     "Filter by Region",
     "Africa",

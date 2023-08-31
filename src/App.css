@@ -148,7 +148,7 @@ input:focus {
   object-fit: cover;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.1);
 }
-.loading{
+.loading {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -264,6 +264,15 @@ input:focus {
   font-family: "Nunito Sans", sans-serif;
   height: 1.5rem;
   cursor: pointer;
+}
+
+.not-found {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
 }
 
 @media screen and (max-width: 1124px) {
