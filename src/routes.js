@@ -1,6 +1,6 @@
 import Details from "./pages/details/Details";
 import Countries from "./pages/countries/Countries";
-import NotFound from "./pages/not-fpound/NotFound";
+import NotFound from "./pages/not-found/NotFound";
 
 const router =[
     {path:"/details/:name" ,element:<Details />},

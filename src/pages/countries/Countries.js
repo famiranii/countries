@@ -75,41 +75,50 @@ export default function Countries() {
 
   return (
     <div>
-      <div className="filter-country">
-        <div className="input-div-country">
-          <IoMdSearch className="bi-search"></IoMdSearch>
-          <input
-            className="input-country"
-            placeholder="Searching for countery..."
-            value={isSearchedCountry}
-            onChange={searchCountry}
-          />
-        </div>
-        <div>
-          <button onClick={setDropdownStatus} className="continet-selector">
-            {currentRegion}
-            <BsChevronDown></BsChevronDown>
-          </button>
-          {showDropdown && (
-            <div className="continent-options">
-              {filteredRegion.map((region, index) => (
-                <p
-                  className="continent-option"
-                  onClick={filterByRegion}
-                  key={index}
-                >
-                  {region}
-                </p>
-              ))}
+      {allCountries.length > 1 ? (
+        <>
+          <div className="filter-country">
+            <div className="input-div-country">
+              <IoMdSearch className="bi-search"></IoMdSearch>
+              <input
+                className="input-country"
+                placeholder="Searching for countery..."
+                value={isSearchedCountry}
+                onChange={searchCountry}
+              />
             </div>
-          )}
+            <div>
+              <button onClick={setDropdownStatus} className="continet-selector">
+                {currentRegion}
+                <BsChevronDown></BsChevronDown>
+              </button>
+              {showDropdown && (
+                <div className="continent-options">
+                  {filteredRegion.map((region, index) => (
+                    <p
+                      className="continent-option"
+                      onClick={filterByRegion}
+                      key={index}
+                    >
+                      {region}
+                    </p>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+          <div className="all-countries">
+            {searchedCountry.map((country, index) => (
+              <Country key={index} country={country} />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="loading">
+          <p>plese wait...</p>
+          <div className="loader"></div>
         </div>
-      </div>
-      <div className="all-countries">
-        {searchedCountry.map((country, index) => (
-          <Country key={index} country={country} />
-        ))}
-      </div>
+      )}
     </div>
   );
 }
