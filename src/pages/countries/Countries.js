@@ -1,9 +1,9 @@
-import "../../App.css";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Country from "./Country";
 import { IoMdSearch } from "react-icons/io";
 import { BsChevronDown } from "react-icons/bs";
+import Error from "../../components/Error";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
@@ -11,16 +11,17 @@ export default function Countries() {
   const [searchedCountry, setSearchedCountries] = useState([]);
   const [isSearchedCountry, setIsSearchedCountry] = useState("");
   const [showDropdown, setDropdown] = useState(false);
+  const [status, setStatus] = useState("loading");
 
   //question about continent ?????
-  const [filteredRegion] = useState([
+  const filteredRegion = [
     "Filter by Region",
     "Africa",
     "Americas",
     "Asia",
     "Europe",
     "Oceania",
-  ]);
+  ];
   const [currentRegion, setRegion] = useState("Filter by Region");
   useEffect(() => {
     axios
@@ -29,16 +30,16 @@ export default function Countries() {
         setAllCountries(response.data);
         setFilteredCountries(response.data);
         setSearchedCountries(response.data);
+        setStatus('response')
         const borders = response.data.map((country) => ({
           border: country.cca3,
           name: country.name.common,
         }));
-
-        console.log(borders);
         localStorage.setItem("borders", JSON.stringify(borders));
       })
       .catch((error) => {
         console.log(error);
+        setStatus('error')
       });
   }, []);
 
@@ -50,7 +51,9 @@ export default function Countries() {
         .toLowerCase()
         .includes(event.target.value.toLowerCase().replace(/\s/g, ""))
     );
-    setSearchedCountries(searchedCountry);
+    setTimeout(() => {
+      setSearchedCountries(searchedCountry);
+    }, 300);
   };
   const setDropdownStatus = () => {
     setDropdown(!showDropdown);
@@ -75,11 +78,11 @@ export default function Countries() {
 
   return (
     <div>
-      {allCountries.length > 1 ? (
+      {status==='response' ? (
         <>
           <div className="filter-country">
             <div className="input-div-country">
-              <IoMdSearch className="bi-search"></IoMdSearch>
+              <IoMdSearch className="bi-search" />
               <input
                 className="input-country"
                 placeholder="Searching for countery..."
@@ -90,7 +93,7 @@ export default function Countries() {
             <div>
               <button onClick={setDropdownStatus} className="continet-selector">
                 {currentRegion}
-                <BsChevronDown></BsChevronDown>
+                <BsChevronDown />
               </button>
               {showDropdown && (
                 <div className="continent-options">
@@ -113,11 +116,13 @@ export default function Countries() {
             ))}
           </div>
         </>
-      ) : (
+      )  : status==='loading' ? (
         <div className="loading">
           <p>plese wait...</p>
           <div className="loader"></div>
         </div>
+      ):(
+        <Error/>
       )}
     </div>
   );

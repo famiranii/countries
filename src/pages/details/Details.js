@@ -4,11 +4,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import DetailsBackBtn from "./DetailsBackBtn";
 import BordersBtn from "./BordersBtn";
+import Error from "../../components/Error";
 
 export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
   const [borders, setBorders] = useState([]);
+  const [status , setStatus] = useState('loading')
   useEffect(() => {
     axios
       .get(`https://restcountries.com/v3.1/translation/${params.name}`)
@@ -20,15 +22,17 @@ export default function Details() {
           info.borders.includes(border.border)
         );
         setBorders(borders);
+        setStatus('response')
       })
       .catch((error) => {
         console.log(error);
+        setStatus('error')
       });
   }, [params.name]);
 
   return (
     <div>
-      {countryInfo.length === 1 ? (
+      {status === 'response' ? (
         <div className="details-page">
           <div>
             <Link to="../">
@@ -110,11 +114,13 @@ export default function Details() {
             </div>
           </div>
         </div>
-      ) : (
+      ) : status==='loading' ? (
         <div className="loading">
           <p>plese wait...</p>
           <div className="loader"></div>
         </div>
+      ):(
+        <Error/>
       )}
     </div>
   );
