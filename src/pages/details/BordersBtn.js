@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function BordersBtn(props) {
+export default function BordersBtn({border}) {
   return (
-    <Link to={`../Details/${props.border.name}`}>
-      <button className="border-btn">{props.border.name}</button>
+    <Link to={`../Details/${border}`}>
+      <button className="border-btn">{border}</button>
     </Link>
   );
 }

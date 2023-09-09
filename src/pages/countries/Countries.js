@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 import Country from "./Country";
 import { IoMdSearch } from "react-icons/io";
 import { BsChevronDown } from "react-icons/bs";
 import Error from "../../components/Error";
+import { countries } from "../../components/GetApi";
 
 export default function Countries() {
   const [allCountries, setAllCountries] = useState([]);
@@ -14,32 +15,26 @@ export default function Countries() {
   const [status, setStatus] = useState("loading");
 
   //question about continent ?????
-  const filteredRegion = [
-    "Filter by Region",
-    "Africa",
-    "Americas",
-    "Asia",
-    "Europe",
-    "Oceania",
-  ];
+  const [filteredRegion, setFilteredRegion] = useState([]);
   const [currentRegion, setRegion] = useState("Filter by Region");
   useEffect(() => {
-    axios
-      .get("https://restcountries.com/v3.1/all")
-      .then((response) => {
-        setAllCountries(response.data);
-        setFilteredCountries(response.data);
-        setSearchedCountries(response.data);
-        setStatus('response')
-        const borders = response.data.map((country) => ({
-          border: country.cca3,
-          name: country.name.common,
-        }));
-        localStorage.setItem("borders", JSON.stringify(borders));
+    countries()
+      .then((data) => {
+        console.log(data);
+        setAllCountries(data);
+        setFilteredCountries(data);
+        setSearchedCountries(data);
+        setStatus("response");
+        const region = Array.from(
+          new Set(data.map((countery) => countery.region))
+        );
+        region.push("Filter by Region");
+        console.log(region);
+        setFilteredRegion(region);
       })
       .catch((error) => {
         console.log(error);
-        setStatus('error')
+        setStatus("error");
       });
   }, []);
 
@@ -78,7 +73,7 @@ export default function Countries() {
 
   return (
     <div>
-      {status==='response' ? (
+      {status === "response" ? (
         <>
           <div className="filter-country">
             <div className="input-div-country">
@@ -116,13 +111,13 @@ export default function Countries() {
             ))}
           </div>
         </>
-      )  : status==='loading' ? (
+      ) : status === "loading" ? (
         <div className="loading">
           <p>plese wait...</p>
           <div className="loader"></div>
         </div>
-      ):(
-        <Error/>
+      ) : (
+        <Error />
       )}
     </div>
   );

@@ -1,38 +1,43 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import DetailsBackBtn from "./DetailsBackBtn";
 import BordersBtn from "./BordersBtn";
 import Error from "../../components/Error";
+import { countries } from "../../components/GetApi";
 
 export default function Details() {
   const params = useParams();
   const [countryInfo, setCountryInfo] = useState([]);
   const [borders, setBorders] = useState([]);
-  const [status , setStatus] = useState('loading')
+  const [status, setStatus] = useState("loading");
   useEffect(() => {
-    axios
-      .get(`https://restcountries.com/v3.1/translation/${params.name}`)
-      .then((response) => {
-        const info = response.data[0];
-        setCountryInfo(response.data);
-        const localBorders = JSON.parse(localStorage.getItem("borders"));
-        const borders = localBorders.filter((border) =>
-          info.borders.includes(border.border)
+    countries()
+      .then((data) => {
+        let countryDetails = data.filter(
+          (country) => country.name.common === params.name
         );
-        setBorders(borders);
-        setStatus('response')
+        countryDetails = countryDetails[0];
+        setCountryInfo(countryDetails);
+
+        let countryBorders = data.filter((country) =>
+          countryDetails.borders.includes(country.cca3)
+        );
+        const borders =[]
+        countryBorders.forEach((country) => borders.push(country.name.common));
+        setBorders(borders)
+        
+        setStatus("response");
       })
       .catch((error) => {
         console.log(error);
-        setStatus('error')
+        setStatus("error");
       });
   }, [params.name]);
 
   return (
     <div>
-      {status === 'response' ? (
+      {status === "response" ? (
         <div className="details-page">
           <div>
             <Link to="../">
@@ -41,54 +46,46 @@ export default function Details() {
           </div>
           <div className="details">
             <div className="flag-div">
-              <img
-                className="flag-img"
-                src={countryInfo[0].flags.svg}
-                alt="img"
-              />
+              <img className="flag-img" src={countryInfo.flags.svg} alt="img" />
             </div>
             <div className="country-infos">
-              <h2 className="country-name">{countryInfo[0].name.common}</h2>
+              <h2 className="country-name">{countryInfo.name.common}</h2>
               <div className="country-inner-infos">
                 <div className="half-info">
                   <div className="country-detail">
                     <strong>Native Name: </strong>
-                    <span className="value">
-                      {countryInfo[0].name.official}
-                    </span>
+                    <span className="value">{countryInfo.name.official}</span>
                   </div>
                   <div className="country-detail">
                     <strong>Population: </strong>
                     <span className="value">
-                      {countryInfo[0].population.toLocaleString()}
+                      {countryInfo.population.toLocaleString()}
                     </span>
                   </div>
                   <div className="country-detail">
                     <strong>Region: </strong>
-                    <span className="value">{countryInfo[0].region}</span>
+                    <span className="value">{countryInfo.region}</span>
                   </div>
                   <div className="country-detail">
                     <strong>Sub Region: </strong>
-                    <span className="value">{countryInfo[0].subregion}</span>
+                    <span className="value">{countryInfo.subregion}</span>
                   </div>
                   <div className="country-detail">
                     <strong>Capital: </strong>
-                    <span className="value">{countryInfo[0].capital}</span>
+                    <span className="value">{countryInfo.capital}</span>
                   </div>
                 </div>
                 <div className="half-info">
                   <div className="country-detail">
                     <strong>Top Level Domain: </strong>
-                    <span className="value">
-                      {countryInfo[0].currencies.name}
-                    </span>
+                    <span className="value">{countryInfo.currencies.name}</span>
                   </div>
                   <div className="country-detail">
                     <strong>Currencies: </strong>
                     <span className="value">
                       {
-                        countryInfo[0].currencies[
-                          Object.keys(countryInfo[0].currencies)[0]
+                        countryInfo.currencies[
+                          Object.keys(countryInfo.currencies)[0]
                         ].name
                       }
                     </span>
@@ -96,7 +93,7 @@ export default function Details() {
                   <div className="country-detail">
                     <strong>Languages: </strong>
                     <span className="value">
-                      {Object.values(countryInfo[0].languages).toLocaleString()}
+                      {Object.values(countryInfo.languages).toLocaleString()}
                     </span>
                   </div>
                 </div>
@@ -114,13 +111,13 @@ export default function Details() {
             </div>
           </div>
         </div>
-      ) : status==='loading' ? (
+      ) : status === "loading" ? (
         <div className="loading">
           <p>plese wait...</p>
           <div className="loader"></div>
         </div>
-      ):(
-        <Error/>
+      ) : (
+        <Error />
       )}
     </div>
   );
