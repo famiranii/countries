@@ -20,13 +20,14 @@ export default function Details() {
         countryDetails = countryDetails[0];
         setCountryInfo(countryDetails);
 
-        let countryBorders = data.filter((country) =>
-          countryDetails.borders.includes(country.cca3)
+        let countryBorders = data.filter(
+          (country) =>
+            countryDetails.borders && countryDetails.borders.includes(country.cca3)
         );
-        const borders =[]
+        const borders = [];
         countryBorders.forEach((country) => borders.push(country.name.common));
-        setBorders(borders)
-        
+        setBorders(borders);
+
         setStatus("response");
       })
       .catch((error) => {
